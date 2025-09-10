@@ -1,12 +1,109 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { FileText, BarChart3, Award, BookOpen } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-gradient-subtle font-body">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-academic">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" />
+        <div className="relative max-w-6xl mx-auto px-6 py-20 text-center">
+          <h1 className="font-heading text-5xl font-bold text-primary-foreground mb-6">
+            AI 写作质量分析平台
+          </h1>
+          <p className="font-body text-xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+            为学生提供专业的Essay质量评估服务，通过多维度深度分析，
+            帮助您理解文章优点与不足，获得清晰的改进方向
+          </p>
+          <div className="flex items-center justify-center gap-4">
+            <Button asChild size="lg" className="bg-primary hover:bg-primary-dark text-primary-foreground shadow-primary">
+              <Link to="/report">查看示例报告</Link>
+            </Button>
+            <Button variant="outline" size="lg" className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10">
+              了解更多
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 max-w-6xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="font-heading text-3xl font-bold text-foreground mb-4">
+            您的私人写作顾问
+          </h2>
+          <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto">
+            超越语法检查的深度洞察，提供学术期刊级别的专业分析
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <Card className="p-6 shadow-medium hover:shadow-strong transition-all duration-300 border-border-subtle">
+            <div className="text-primary mb-4">
+              <FileText size={32} />
+            </div>
+            <h3 className="font-heading text-xl font-semibold text-foreground mb-3">
+              多维度评估
+            </h3>
+            <p className="font-body text-muted-foreground leading-relaxed">
+              从内容论点、结构逻辑、语言风格等6个维度全面分析文章质量
+            </p>
+          </Card>
+
+          <Card className="p-6 shadow-medium hover:shadow-strong transition-all duration-300 border-border-subtle">
+            <div className="text-primary mb-4">
+              <BarChart3 size={32} />
+            </div>
+            <h3 className="font-heading text-xl font-semibold text-foreground mb-3">
+              可视化数据
+            </h3>
+            <p className="font-body text-muted-foreground leading-relaxed">
+              雷达图、词云图等专业图表，直观展示文章各项指标表现
+            </p>
+          </Card>
+
+          <Card className="p-6 shadow-medium hover:shadow-strong transition-all duration-300 border-border-subtle">
+            <div className="text-primary mb-4">
+              <Award size={32} />
+            </div>
+            <h3 className="font-heading text-xl font-semibold text-foreground mb-3">
+              专业建议
+            </h3>
+            <p className="font-body text-muted-foreground leading-relaxed">
+              提供具体可操作的改进建议，帮助您快速提升写作水平
+            </p>
+          </Card>
+
+          <Card className="p-6 shadow-medium hover:shadow-strong transition-all duration-300 border-border-subtle">
+            <div className="text-primary mb-4">
+              <BookOpen size={32} />
+            </div>
+            <h3 className="font-heading text-xl font-semibold text-foreground mb-3">
+              学术标准
+            </h3>
+            <p className="font-body text-muted-foreground leading-relaxed">
+              基于学术期刊标准的评估体系，确保分析结果的权威性
+            </p>
+          </Card>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-card border-t border-border-subtle py-16">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="font-heading text-3xl font-bold text-foreground mb-4">
+            开始您的写作提升之旅
+          </h2>
+          <p className="font-body text-lg text-muted-foreground mb-8">
+            立即体验专业的AI写作分析服务，获得个性化的改进建议
+          </p>
+          <Button asChild size="lg" className="bg-primary hover:bg-primary-dark text-primary-foreground shadow-primary">
+            <Link to="/report">查看详细报告</Link>
+          </Button>
+        </div>
+      </section>
     </div>
   );
 };
