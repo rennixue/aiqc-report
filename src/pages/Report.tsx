@@ -386,7 +386,7 @@ const Report = () => {
 
           <div className="space-y-6">
             <div>
-              <h3 className="font-heading text-lg font-semibold text-foreground mb-4">详细问题分析</h3>
+              <h3 className="font-sans text-lg font-semibold text-foreground mb-4">详细问题分析</h3>
               
               {/* Grammar Errors */}
               <div className="mb-6">
