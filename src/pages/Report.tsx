@@ -64,7 +64,7 @@ const Report = () => {
           
           <div className="grid lg:grid-cols-2 gap-8 mb-6">
             {/* Left: Overall Score with Circular Progress */}
-            <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl p-6 border border-primary/20">
+            <div className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
               <h3 className="font-sans font-semibold text-lg mb-6 text-foreground">综合评分</h3>
               <div className="flex items-center justify-center mb-6">
                 <div className="relative w-32 h-32">
@@ -104,7 +104,7 @@ const Report = () => {
                 </div>
                 <div className="flex items-center justify-between font-sans text-sm bg-card rounded-lg p-3">
                   <span className="text-muted-foreground">可提升分数</span>
-                  <span className="text-accent-success font-bold text-lg">+{potentialScore - overallScore}</span>
+                  <span className="text-green-600 font-bold text-lg">+{potentialScore - overallScore}</span>
                 </div>
               </div>
             </div>
@@ -138,9 +138,9 @@ const Report = () => {
           </div>
           
           {/* AI Summary - Full Width */}
-          <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-xl p-6 border border-primary/20">
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-700">
             <h3 className="font-sans font-semibold text-lg mb-4 text-foreground flex items-center gap-2">
-              <Award className="text-primary" size={20} />
+              <Award className="text-blue-600" size={20} />
               AI评语摘要
             </h3>
             <p className="font-sans text-foreground leading-relaxed text-lg">
@@ -198,7 +198,7 @@ const Report = () => {
                 内容与论点分析
               </h3>
               <div className="flex items-center gap-4">
-                <Badge variant="secondary" className="font-sans text-sm">
+                <Badge variant="secondary" className="font-sans text-sm bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">
                   预估提分: +3
                 </Badge>
                 <div className="font-sans text-2xl font-bold text-accent-success">85/100</div>
@@ -240,7 +240,7 @@ const Report = () => {
                 结构与逻辑分析
               </h3>
               <div className="flex items-center gap-4">
-                <Badge variant="secondary" className="font-sans text-sm">
+                <Badge variant="secondary" className="font-sans text-sm bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">
                   预估提分: +5
                 </Badge>
                 <div className="font-sans text-2xl font-bold text-accent-info">72/100</div>
@@ -288,7 +288,7 @@ const Report = () => {
                 语言与风格分析
               </h3>
               <div className="flex items-center gap-4">
-                <Badge variant="secondary" className="font-sans text-sm">
+                <Badge variant="secondary" className="font-sans text-sm bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">
                   预估提分: +2
                 </Badge>
                 <div className="font-sans text-2xl font-bold text-accent-info">78/100</div>
@@ -354,7 +354,7 @@ const Report = () => {
               语法与格式检查
             </h2>
             <div className="flex items-center gap-4">
-              <Badge variant="secondary" className="font-sans text-sm">
+              <Badge variant="secondary" className="font-sans text-sm bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">
                 预估提分: +8
               </Badge>
               <div className="font-sans text-2xl font-bold text-accent-info">68/100</div>
@@ -505,56 +505,56 @@ const Report = () => {
 
         {/* Strengths & Recommendations */}
         <section className="grid lg:grid-cols-2 gap-8">
-          <Card className="p-8 shadow-medium bg-gradient-to-br from-green-500/5 to-green-600/10 border-green-500/20">
+          <Card className="p-8 shadow-medium bg-white dark:bg-card border border-border-subtle">
             <h3 className="font-sans text-xl font-semibold text-foreground mb-6 flex items-center gap-3">
               <CheckCircle className="text-green-600" size={24} />
               文章亮点
             </h3>
             <div className="space-y-4">
-              <div className="flex items-start gap-3 bg-green-50/50 dark:bg-green-900/10 rounded-lg p-3">
+              <div className="flex items-start gap-3 bg-green-50 dark:bg-green-900/20 rounded-lg p-3 border border-green-200 dark:border-green-800">
                 <CheckCircle className="text-green-600 flex-shrink-0 mt-1" size={16} />
                 <p className="font-sans text-foreground">开篇引言成功地吸引了读者的兴趣并清晰地陈述了论点</p>
               </div>
-              <div className="flex items-start gap-3 bg-green-50/50 dark:bg-green-900/10 rounded-lg p-3">
+              <div className="flex items-start gap-3 bg-green-50 dark:bg-green-900/20 rounded-lg p-3 border border-green-200 dark:border-green-800">
                 <CheckCircle className="text-green-600 flex-shrink-0 mt-1" size={16} />
                 <p className="font-sans text-foreground">数据引用恰当，增强了论证的说服力</p>
               </div>
-              <div className="flex items-start gap-3 bg-green-50/50 dark:bg-green-900/10 rounded-lg p-3">
+              <div className="flex items-start gap-3 bg-green-50 dark:bg-green-900/20 rounded-lg p-3 border border-green-200 dark:border-green-800">
                 <CheckCircle className="text-green-600 flex-shrink-0 mt-1" size={16} />
                 <p className="font-sans text-foreground">结论部分总结到位，呼应主题</p>
               </div>
-              <div className="flex items-start gap-3 bg-green-50/50 dark:bg-green-900/10 rounded-lg p-3">
+              <div className="flex items-start gap-3 bg-green-50 dark:bg-green-900/20 rounded-lg p-3 border border-green-200 dark:border-green-800">
                 <CheckCircle className="text-green-600 flex-shrink-0 mt-1" size={16} />
                 <p className="font-sans text-foreground">选题具有现实意义和学术价值</p>
               </div>
             </div>
           </Card>
 
-          <Card className="p-8 shadow-medium bg-gradient-to-br from-orange-500/5 to-orange-600/10 border-orange-500/20">
+          <Card className="p-8 shadow-medium bg-white dark:bg-card border border-border-subtle">
             <h3 className="font-sans text-xl font-semibold text-foreground mb-6 flex items-center gap-3">
               <AlertTriangle className="text-orange-600" size={24} />
               改进建议
             </h3>
             <div className="space-y-4">
-              <div className="flex items-start gap-3 bg-orange-50/50 dark:bg-orange-900/10 rounded-lg p-3">
+              <div className="flex items-start gap-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg p-3 border border-orange-200 dark:border-orange-800">
                 <AlertTriangle className="text-orange-600 flex-shrink-0 mt-1" size={16} />
                 <div>
                   <p className="font-sans text-foreground">建议在第三段与第四段之间增加过渡句，缓和逻辑跳跃</p>
-                  <Badge className="mt-2 bg-primary text-primary-foreground font-sans font-bold">预估提分 +5</Badge>
+                  <Badge className="mt-2 bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 font-sans font-bold">预估提分 +5</Badge>
                 </div>
               </div>
-              <div className="flex items-start gap-3 bg-orange-50/50 dark:bg-orange-900/10 rounded-lg p-3">
+              <div className="flex items-start gap-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg p-3 border border-orange-200 dark:border-orange-800">
                 <AlertTriangle className="text-orange-600 flex-shrink-0 mt-1" size={16} />
                 <div>
                   <p className="font-sans text-foreground">部分长句可适当拆分，提升阅读流畅度</p>
-                  <Badge className="mt-2 bg-primary text-primary-foreground font-sans font-bold">预估提分 +3</Badge>
+                  <Badge className="mt-2 bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 font-sans font-bold">预估提分 +3</Badge>
                 </div>
               </div>
-              <div className="flex items-start gap-3 bg-orange-50/50 dark:bg-orange-900/10 rounded-lg p-3">
+              <div className="flex items-start gap-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg p-3 border border-orange-200 dark:border-orange-800">
                 <AlertTriangle className="text-orange-600 flex-shrink-0 mt-1" size={16} />
                 <div>
                   <p className="font-sans text-foreground">增加反面论证，使论述更加全面客观</p>
-                  <Badge className="mt-2 bg-primary text-primary-foreground font-sans font-bold">预估提分 +2</Badge>
+                  <Badge className="mt-2 bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 font-sans font-bold">预估提分 +2</Badge>
                 </div>
               </div>
             </div>
