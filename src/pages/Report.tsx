@@ -55,89 +55,92 @@ const Report = () => {
       </header>
 
       <main className="max-w-6xl mx-auto px-6 py-8 space-y-8">
-        {/* Executive Summary - Split into 3 separate cards */}
-        <section className="grid lg:grid-cols-3 gap-6">
-          {/* Overall Score Card */}
-          <Card className="p-6 shadow-soft">
-            <h3 className="font-sans font-semibold text-lg mb-6 text-foreground flex items-center gap-2">
-              <Target className="text-primary" size={20} />
-              综合评分
-            </h3>
-            <div className="flex items-center justify-center mb-6">
-              <div className="relative w-32 h-32">
-                <svg className="w-32 h-32 -rotate-90" viewBox="0 0 120 120">
-                  <circle
-                    cx="60"
-                    cy="60"
-                    r="50"
-                    fill="none"
-                    stroke="hsl(var(--muted))"
-                    strokeWidth="8"
-                  />
-                  <circle
-                    cx="60"
-                    cy="60"
-                    r="50"
-                    fill="none"
-                    stroke="hsl(var(--primary))"
-                    strokeWidth="8"
-                    strokeLinecap="round"
-                    strokeDasharray={`${(overallScore / 100) * 314} 314`}
-                    className="transition-all duration-1000"
-                  />
-                </svg>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="font-sans text-3xl font-bold text-primary">{overallScore}</div>
-                    <div className="font-sans text-sm text-muted-foreground">/100</div>
+        {/* Executive Summary - First row: Score and Metrics, Second row: AI Summary */}
+        <section className="space-y-6">
+          {/* First row - Overall Score and Text Metrics */}
+          <div className="grid lg:grid-cols-2 gap-6">
+            {/* Overall Score Card */}
+            <Card className="p-6 shadow-soft">
+              <h3 className="font-sans font-semibold text-lg mb-6 text-foreground flex items-center gap-2">
+                <Target className="text-primary" size={20} />
+                综合评分
+              </h3>
+              <div className="flex items-center justify-center mb-6">
+                <div className="relative w-32 h-32">
+                  <svg className="w-32 h-32 -rotate-90" viewBox="0 0 120 120">
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="50"
+                      fill="none"
+                      stroke="hsl(var(--muted))"
+                      strokeWidth="8"
+                    />
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="50"
+                      fill="none"
+                      stroke="hsl(var(--primary))"
+                      strokeWidth="8"
+                      strokeLinecap="round"
+                      strokeDasharray={`${(overallScore / 100) * 314} 314`}
+                      className="transition-all duration-1000"
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="font-sans text-3xl font-bold text-primary">{overallScore}</div>
+                      <div className="font-sans text-sm text-muted-foreground">/100</div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between font-sans text-sm bg-card-subtle rounded-lg p-3">
-                <span className="text-muted-foreground">潜在最高分</span>
-                <span className="text-primary font-bold text-lg">{potentialScore}/100</span>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between font-sans text-sm bg-card-subtle rounded-lg p-3">
+                  <span className="text-muted-foreground">潜在最高分</span>
+                  <span className="text-primary font-bold text-lg">{potentialScore}/100</span>
+                </div>
+                <div className="flex items-center justify-between font-sans text-sm bg-card-subtle rounded-lg p-3">
+                  <span className="text-muted-foreground">可提升分数</span>
+                  <span className="text-green-600 font-bold text-lg">+{potentialScore - overallScore}</span>
+                </div>
               </div>
-              <div className="flex items-center justify-between font-sans text-sm bg-card-subtle rounded-lg p-3">
-                <span className="text-muted-foreground">可提升分数</span>
-                <span className="text-green-600 font-bold text-lg">+{potentialScore - overallScore}</span>
-              </div>
-            </div>
-          </Card>
+            </Card>
 
-          {/* Text Metrics Card */}
-          <Card className="p-6 shadow-soft">
-            <h3 className="font-sans font-semibold text-lg mb-4 text-foreground flex items-center gap-2">
-              <FileText className="text-primary" size={20} />
-              文本基础指标
-            </h3>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-lg p-3 border border-blue-500/20">
-                <FileText className="text-blue-600 mb-1" size={16} />
-                <div className="font-sans text-xl font-bold text-foreground">{wordCount}</div>
-                <div className="font-sans text-xs text-muted-foreground">总词数</div>
+            {/* Text Metrics Card */}
+            <Card className="p-6 shadow-soft">
+              <h3 className="font-sans font-semibold text-lg mb-4 text-foreground flex items-center gap-2">
+                <FileText className="text-primary" size={20} />
+                文本基础指标
+              </h3>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-lg p-3">
+                  <FileText className="text-blue-600 mb-1" size={16} />
+                  <div className="font-sans text-xl font-bold text-foreground">{wordCount}</div>
+                  <div className="font-sans text-xs text-muted-foreground">总词数</div>
+                </div>
+                <div className="bg-gradient-to-br from-green-500/10 to-green-600/10 rounded-lg p-3">
+                  <BookOpen className="text-green-600 mb-1" size={16} />
+                  <div className="font-sans text-xl font-bold text-foreground">{readingTime}分钟</div>
+                  <div className="font-sans text-xs text-muted-foreground">预估阅读时间</div>
+                </div>
+                <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/10 rounded-lg p-3">
+                  <PenTool className="text-purple-600 mb-1" size={16} />
+                  <div className="font-sans text-xl font-bold text-foreground">{avgSentenceLength}</div>
+                  <div className="font-sans text-xs text-muted-foreground">平均句长</div>
+                </div>
+                <div className="bg-gradient-to-br from-orange-500/10 to-orange-600/10 rounded-lg p-3">
+                  <Target className="text-orange-600 mb-1" size={16} />
+                  <div className="font-sans text-xl font-bold text-foreground">{readabilityLevel}</div>
+                  <div className="font-sans text-xs text-muted-foreground">阅读难度等级</div>
+                </div>
               </div>
-              <div className="bg-gradient-to-br from-green-500/10 to-green-600/10 rounded-lg p-3 border border-green-500/20">
-                <BookOpen className="text-green-600 mb-1" size={16} />
-                <div className="font-sans text-xl font-bold text-foreground">{readingTime}分钟</div>
-                <div className="font-sans text-xs text-muted-foreground">预估阅读时间</div>
-              </div>
-              <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/10 rounded-lg p-3 border border-purple-500/20">
-                <PenTool className="text-purple-600 mb-1" size={16} />
-                <div className="font-sans text-xl font-bold text-foreground">{avgSentenceLength}</div>
-                <div className="font-sans text-xs text-muted-foreground">平均句长</div>
-              </div>
-              <div className="bg-gradient-to-br from-orange-500/10 to-orange-600/10 rounded-lg p-3 border border-orange-500/20">
-                <Target className="text-orange-600 mb-1" size={16} />
-                <div className="font-sans text-xl font-bold text-foreground">{readabilityLevel}</div>
-                <div className="font-sans text-xs text-muted-foreground">阅读难度等级</div>
-              </div>
-            </div>
-          </Card>
+            </Card>
+          </div>
 
-          {/* AI Summary Card */}
-          <Card className="p-6 shadow-soft bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-blue-200 dark:border-blue-700">
+          {/* Second row - AI Summary */}
+          <Card className="p-6 shadow-soft bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20">
             <h3 className="font-sans font-semibold text-lg mb-4 text-foreground flex items-center gap-2">
               <Award className="text-blue-600" size={20} />
               AI评语摘要
@@ -151,21 +154,21 @@ const Report = () => {
         </section>
 
         {/* Multi-Dimensional Assessment */}
-        <section className="bg-card rounded-xl p-8 shadow-soft border border-border-subtle">
+        <section className="bg-card rounded-xl p-8 shadow-soft">
           <h2 className="font-sans text-2xl font-semibold text-foreground mb-8 flex items-center gap-3">
             <Target className="text-primary" size={24} />
             多维能力评估
           </h2>
           
           <div className="grid lg:grid-cols-2 gap-8 items-stretch">
-            <div className="bg-card-subtle rounded-lg p-6 border border-border-subtle h-full flex flex-col">
+            <div className="bg-card-subtle rounded-lg p-6 shadow-soft h-full flex flex-col">
               <h3 className="font-sans text-lg font-semibold text-foreground mb-4 text-center">能力雷达图</h3>
               <div className="flex-1 flex items-center justify-center">
                 <CompetencyRadarChart data={radarData} />
               </div>
             </div>
             
-            <div className="bg-card-subtle rounded-lg p-6 border border-border-subtle h-full">
+            <div className="bg-card-subtle rounded-lg p-6 shadow-soft h-full">
               <h3 className="font-sans text-lg font-semibold text-foreground mb-6">各维度评分详情</h3>
               <div className="space-y-5">
                 {radarData.map((item, index) => (
@@ -192,7 +195,7 @@ const Report = () => {
           <h2 className="font-sans text-2xl font-semibold text-foreground">深度分析板块</h2>
           
           {/* Content & Thesis Analysis */}
-          <div className="bg-card rounded-xl p-8 shadow-soft border border-border-subtle">
+          <div className="bg-card rounded-xl p-8 shadow-soft">
             <div className="flex items-center justify-between mb-6">
               <h3 className="font-sans text-xl font-semibold text-foreground flex items-center gap-3">
                 <BookOpen className="text-primary" size={24} />
@@ -234,7 +237,7 @@ const Report = () => {
           </div>
 
           {/* Structure & Logic Analysis */}
-          <div className="bg-card rounded-xl p-8 shadow-medium border border-border-subtle">
+          <div className="bg-card rounded-xl p-8 shadow-medium">
             <div className="flex items-center justify-between mb-6">
               <h3 className="font-sans text-xl font-semibold text-foreground flex items-center gap-3">
                 <Target className="text-primary" size={24} />
@@ -282,7 +285,7 @@ const Report = () => {
           </div>
 
           {/* Language & Style Analysis */}
-          <div className="bg-card rounded-xl p-8 shadow-medium border border-border-subtle">
+          <div className="bg-card rounded-xl p-8 shadow-medium">
             <div className="flex items-center justify-between mb-6">
               <h3 className="font-sans text-xl font-semibold text-foreground flex items-center gap-3">
                 <PenTool className="text-primary" size={24} />
@@ -348,7 +351,7 @@ const Report = () => {
         </section>
 
         {/* Grammar & Format Check */}
-        <section className="bg-card rounded-xl p-8 shadow-medium border border-border-subtle">
+        <section className="bg-card rounded-xl p-8 shadow-medium">
           <div className="flex items-center justify-between mb-6">
             <h2 className="font-sans text-xl font-semibold text-foreground flex items-center gap-3">
               <Award className="text-primary" size={24} />
@@ -363,19 +366,19 @@ const Report = () => {
           </div>
           
           <div className="grid md:grid-cols-4 gap-4 mb-8">
-            <div className="bg-accent-warning/10 rounded-lg p-4 border border-accent-warning/20">
+            <div className="bg-accent-warning/10 rounded-lg p-4 shadow-soft">
               <div className="text-2xl font-bold text-accent-warning">5</div>
               <div className="text-sm text-muted-foreground">语法错误</div>
             </div>
-            <div className="bg-accent-info/10 rounded-lg p-4 border border-accent-info/20">
+            <div className="bg-accent-info/10 rounded-lg p-4 shadow-soft">
               <div className="text-2xl font-bold text-accent-info">3</div>
               <div className="text-sm text-muted-foreground">拼写错误</div>
             </div>
-            <div className="bg-accent-warning/10 rounded-lg p-4 border border-accent-warning/20">
+            <div className="bg-accent-warning/10 rounded-lg p-4 shadow-soft">
               <div className="text-2xl font-bold text-accent-warning">7</div>
               <div className="text-sm text-muted-foreground">标点误用</div>
             </div>
-            <div className="bg-primary/10 rounded-lg p-4 border border-primary/20">
+            <div className="bg-primary/10 rounded-lg p-4 shadow-soft">
               <div className="text-2xl font-bold text-primary">2</div>
               <div className="text-sm text-muted-foreground">格式问题</div>
             </div>
@@ -506,52 +509,52 @@ const Report = () => {
 
         {/* Strengths & Recommendations */}
         <section className="grid lg:grid-cols-2 gap-8">
-          <Card className="p-8 shadow-medium bg-white dark:bg-card border border-border-subtle">
+          <Card className="p-8 shadow-medium bg-white dark:bg-card">
             <h3 className="font-sans text-xl font-semibold text-foreground mb-6 flex items-center gap-3">
               <CheckCircle className="text-green-600" size={24} />
               文章亮点
             </h3>
             <div className="space-y-4">
-              <div className="flex items-start gap-3 bg-green-50 dark:bg-green-900/20 rounded-lg p-3 border border-green-200 dark:border-green-800">
+              <div className="flex items-start gap-3 bg-green-50 dark:bg-green-900/20 rounded-lg p-3 shadow-soft">
                 <CheckCircle className="text-green-600 flex-shrink-0 mt-1" size={16} />
                 <p className="font-sans text-foreground">开篇引言成功地吸引了读者的兴趣并清晰地陈述了论点</p>
               </div>
-              <div className="flex items-start gap-3 bg-green-50 dark:bg-green-900/20 rounded-lg p-3 border border-green-200 dark:border-green-800">
+              <div className="flex items-start gap-3 bg-green-50 dark:bg-green-900/20 rounded-lg p-3 shadow-soft">
                 <CheckCircle className="text-green-600 flex-shrink-0 mt-1" size={16} />
                 <p className="font-sans text-foreground">数据引用恰当，增强了论证的说服力</p>
               </div>
-              <div className="flex items-start gap-3 bg-green-50 dark:bg-green-900/20 rounded-lg p-3 border border-green-200 dark:border-green-800">
+              <div className="flex items-start gap-3 bg-green-50 dark:bg-green-900/20 rounded-lg p-3 shadow-soft">
                 <CheckCircle className="text-green-600 flex-shrink-0 mt-1" size={16} />
                 <p className="font-sans text-foreground">结论部分总结到位，呼应主题</p>
               </div>
-              <div className="flex items-start gap-3 bg-green-50 dark:bg-green-900/20 rounded-lg p-3 border border-green-200 dark:border-green-800">
+              <div className="flex items-start gap-3 bg-green-50 dark:bg-green-900/20 rounded-lg p-3 shadow-soft">
                 <CheckCircle className="text-green-600 flex-shrink-0 mt-1" size={16} />
                 <p className="font-sans text-foreground">选题具有现实意义和学术价值</p>
               </div>
             </div>
           </Card>
 
-          <Card className="p-8 shadow-medium bg-white dark:bg-card border border-border-subtle">
+          <Card className="p-8 shadow-medium bg-white dark:bg-card">
             <h3 className="font-sans text-xl font-semibold text-foreground mb-6 flex items-center gap-3">
               <AlertTriangle className="text-orange-600" size={24} />
               改进建议
             </h3>
             <div className="space-y-4">
-              <div className="flex items-start gap-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg p-3 border border-orange-200 dark:border-orange-800">
+              <div className="flex items-start gap-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg p-3 shadow-soft">
                 <AlertTriangle className="text-orange-600 flex-shrink-0 mt-1" size={16} />
                 <div>
                   <p className="font-sans text-foreground">建议在第三段与第四段之间增加过渡句，缓和逻辑跳跃</p>
                   <Badge className="mt-2 bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 font-sans font-bold">预估提分 +5</Badge>
                 </div>
               </div>
-              <div className="flex items-start gap-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg p-3 border border-orange-200 dark:border-orange-800">
+              <div className="flex items-start gap-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg p-3 shadow-soft">
                 <AlertTriangle className="text-orange-600 flex-shrink-0 mt-1" size={16} />
                 <div>
                   <p className="font-sans text-foreground">部分长句可适当拆分，提升阅读流畅度</p>
                   <Badge className="mt-2 bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 font-sans font-bold">预估提分 +3</Badge>
                 </div>
               </div>
-              <div className="flex items-start gap-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg p-3 border border-orange-200 dark:border-orange-800">
+              <div className="flex items-start gap-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg p-3 shadow-soft">
                 <AlertTriangle className="text-orange-600 flex-shrink-0 mt-1" size={16} />
                 <div>
                   <p className="font-sans text-foreground">增加反面论证，使论述更加全面客观</p>
@@ -563,7 +566,7 @@ const Report = () => {
         </section>
 
         {/* Academic Integrity */}
-        <section className="bg-card rounded-xl p-8 shadow-medium border border-border-subtle">
+        <section className="bg-card rounded-xl p-8 shadow-medium">
           <h2 className="font-sans text-2xl font-semibold text-foreground mb-6 flex items-center gap-3">
             <Shield className="text-accent-success" size={24} />
             学术诚信检测
@@ -584,7 +587,7 @@ const Report = () => {
             </div>
           </div>
           
-          <div className="mt-6 p-4 bg-accent-success/10 rounded-lg border border-accent-success/20">
+          <div className="mt-6 p-4 bg-accent-success/10 rounded-lg shadow-soft">
             <p className="text-sm text-foreground">
               ✅ 未发现潜在的抄袭内容。文章整体展现了良好的学术诚信水准。
             </p>
@@ -593,7 +596,7 @@ const Report = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-card border-t border-border-subtle py-6 mt-12">
+      <footer className="bg-card shadow-soft py-6 mt-12">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-sm text-muted-foreground">
             本报告由AI生成，仅供参考与学习目的 | 页码：1/1 | 生成时间：2024年01月15日
