@@ -1,9 +1,28 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { FileText, BarChart3, Award, BookOpen } from "lucide-react";
-import { Link } from "react-router-dom";
+import { FileText, BarChart3, Award, BookOpen, Upload } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 const Index = () => {
+  const navigate = useNavigate();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      // 模拟文件分析过程
+      // 实际项目中这里会调用API进行文件分析
+      setTimeout(() => {
+        navigate('/report');
+      }, 1000);
+    }
+  };
+
+  const triggerFileUpload = () => {
+    fileInputRef.current?.click();
+  };
+
   return (
     <div className="min-h-screen bg-gradient-subtle font-body">
       {/* Hero Section */}
@@ -17,12 +36,21 @@ const Index = () => {
             为学生提供专业的Essay质量评估服务，通过多维度深度分析，
             帮助您理解文章优点与不足，获得清晰的改进方向
           </p>
-          <div className="flex items-center justify-center gap-4">
-            <Button asChild size="lg" className="bg-primary hover:bg-primary-dark text-primary-foreground shadow-primary">
-              <Link to="/report">查看示例报告</Link>
-            </Button>
-            <Button variant="outline" size="lg" className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10">
-              了解更多
+          <div className="flex items-center justify-center">
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".txt,.doc,.docx,.pdf"
+              onChange={handleFileUpload}
+              className="hidden"
+            />
+            <Button 
+              onClick={triggerFileUpload}
+              size="lg" 
+              className="bg-primary hover:bg-primary-dark text-primary-foreground shadow-primary"
+            >
+              <Upload className="mr-2 h-5 w-5" />
+              上传文档开始分析
             </Button>
           </div>
         </div>
@@ -87,21 +115,6 @@ const Index = () => {
               基于学术期刊标准的评估体系，确保分析结果的权威性
             </p>
           </Card>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="bg-card border-t border-border-subtle py-16">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-heading text-3xl font-bold text-foreground mb-4">
-            开始您的写作提升之旅
-          </h2>
-          <p className="font-body text-lg text-muted-foreground mb-8">
-            立即体验专业的AI写作分析服务，获得个性化的改进建议
-          </p>
-          <Button asChild size="lg" className="bg-primary hover:bg-primary-dark text-primary-foreground shadow-primary">
-            <Link to="/report">查看详细报告</Link>
-          </Button>
         </div>
       </section>
     </div>

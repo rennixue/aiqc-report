@@ -3,7 +3,9 @@ import { ScoreCard } from "@/components/ScoreCard";
 import { WordCloud } from "@/components/WordCloud";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, AlertTriangle, Target, BookOpen, PenTool, FileText, Award, Shield } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { CheckCircle, AlertTriangle, Target, BookOpen, PenTool, FileText, Award, Shield, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 // Mock data for demonstration
 const radarData = [
@@ -29,6 +31,7 @@ const wordCloudData = [
 ];
 
 const Report = () => {
+  const navigate = useNavigate();
   const overallScore = 78;
   const potentialScore = 88;
   const wordCount = 1245;
@@ -41,14 +44,27 @@ const Report = () => {
       {/* Header */}
       <header className="bg-card border-b border-border-subtle shadow-soft">
         <div className="max-w-6xl mx-auto px-6 py-8">
-          <div>
-            <h1 className="font-sans text-3xl font-bold text-foreground mb-2">
-              《人工智能在现代教育中的应用与影响》- 智能分析报告
-            </h1>
-            <div className="flex items-center gap-6 text-sm text-muted-foreground font-sans">
-              <span>生成日期：2024年01月15日</span>
-              <span>报告ID：RP-20240115-78432</span>
-              <span>昵称：张同学</span>
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="flex items-center gap-4 mb-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => navigate('/')}
+                  className="flex items-center gap-2"
+                >
+                  <ArrowLeft size={16} />
+                  返回首页
+                </Button>
+              </div>
+              <h1 className="font-sans text-3xl font-bold text-foreground mb-2">
+                《人工智能在现代教育中的应用与影响》- 智能分析报告
+              </h1>
+              <div className="flex items-center gap-6 text-sm text-muted-foreground font-sans">
+                <span>生成日期：2024年01月15日</span>
+                <span>报告ID：RP-20240115-78432</span>
+                <span>昵称：张同学</span>
+              </div>
             </div>
           </div>
         </div>
