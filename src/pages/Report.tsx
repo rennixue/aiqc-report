@@ -105,86 +105,323 @@ const Report = () => {
               </div>
             </div>
 
+          </div>
+        </section>
+
+        {/* Multi-Dimensional Assessment */}
+        <section className="bg-card rounded-xl p-8 shadow-medium border border-border-subtle">
+          <h2 className="font-heading text-2xl font-semibold text-foreground mb-6 flex items-center gap-3">
+            <Target className="text-primary" size={24} />
+            多维能力评估
+          </h2>
+          
+          <div className="grid lg:grid-cols-2 gap-8">
             <div>
-              <h3 className="font-heading text-xl font-semibold text-foreground mb-4">
-                多维能力评估
-              </h3>
               <CompetencyRadarChart data={radarData} />
+            </div>
+            
+            <div className="space-y-4">
+              <h3 className="font-heading text-lg font-semibold text-foreground mb-4">详细评分</h3>
+              {radarData.map((item, index) => (
+                <div key={index} className="flex items-center justify-between p-3 bg-muted rounded-lg">
+                  <span className="text-foreground font-medium">{item.dimension}</span>
+                  <span className="text-primary font-bold text-lg">{item.score}/100</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Detailed Analysis */}
-        <section className="grid lg:grid-cols-2 gap-6">
-          <ScoreCard
-            title="内容与论点分析"
-            score={85}
-            icon={<BookOpen size={20} />}
-            description="立意新颖，论点清晰明确。文章主题具有现实意义，展现了良好的批判性思维能力。"
-          />
-          <ScoreCard
-            title="结构与逻辑分析"
-            score={72}
-            icon={<Target size={20} />}
-            description="整体框架完整，但段落间过渡略显生硬。建议增强逻辑连贯性和论证层次感。"
-          />
-          <ScoreCard
-            title="语言与风格分析"
-            score={78}
-            icon={<PenTool size={20} />}
-            description="用词恰当，句式相对多样。可进一步提升表达的学术性和精确度。"
-          />
-          <ScoreCard
-            title="证据与支撑分析"
-            score={80}
-            icon={<FileText size={20} />}
-            description="引用数据充分，证据支撑有力。建议多元化论证方式，增加案例分析。"
-          />
-        </section>
+        <section className="space-y-8">
+          <h2 className="font-heading text-2xl font-semibold text-foreground">深度分析板块</h2>
+          
+          {/* Content & Thesis Analysis */}
+          <div className="bg-card rounded-xl p-8 shadow-medium border border-border-subtle">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="font-heading text-xl font-semibold text-foreground flex items-center gap-3">
+                <BookOpen className="text-primary" size={24} />
+                内容与论点分析
+              </h3>
+              <div className="text-2xl font-bold text-accent-success">85/100</div>
+            </div>
+            
+            <div className="space-y-6">
+              <div>
+                <h4 className="font-semibold text-foreground mb-3">AI评语</h4>
+                <p className="text-foreground leading-relaxed">
+                  文章立场清晰，论点具有现实意义和学术价值。作者展现了良好的批判性思维，能够从多角度分析人工智能在教育领域的影响。
+                  主题展开充分，对于AI技术的教育应用场景描述详细且具体。
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold text-foreground mb-3">原文证据</h4>
+                <div className="space-y-4">
+                  <div className="bg-accent-success/10 p-4 rounded-lg border-l-4 border-accent-success">
+                    <div className="text-sm text-muted-foreground mb-2">优秀示例：</div>
+                    <p className="text-foreground italic">"人工智能技术正在以前所未有的速度改变着教育的基本形态，从个性化学习推荐到智能评估系统..."</p>
+                    <div className="text-sm text-accent-success mt-2">✓ 开篇引入恰当，立意清晰</div>
+                  </div>
+                  <div className="bg-accent-warning/10 p-4 rounded-lg border-l-4 border-accent-warning">
+                    <div className="text-sm text-muted-foreground mb-2">待改进示例：</div>
+                    <p className="text-foreground italic">"这些技术很好，对学生有帮助。"</p>
+                    <div className="text-sm text-accent-warning mt-2">⚠ 论述过于简单，缺乏深度分析</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-        {/* Word Cloud */}
-        <section>
-          <WordCloud words={wordCloudData} />
+          {/* Structure & Logic Analysis */}
+          <div className="bg-card rounded-xl p-8 shadow-medium border border-border-subtle">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="font-heading text-xl font-semibold text-foreground flex items-center gap-3">
+                <Target className="text-primary" size={24} />
+                结构与逻辑分析
+              </h3>
+              <div className="text-2xl font-bold text-accent-info">72/100</div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold text-foreground mb-3">AI评语</h4>
+                <p className="text-foreground leading-relaxed mb-4">
+                  文章整体框架完整，具备引言、主体和结论的基本结构。各段落主题明确，但部分段落间的逻辑衔接略显生硬，
+                  建议增加更多过渡性语句以增强文章的连贯性。
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold text-foreground mb-3">文章结构示意图</h4>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3 p-3 bg-accent-success/10 rounded-lg border border-accent-success/20">
+                    <div className="w-3 h-3 bg-accent-success rounded-full"></div>
+                    <span className="text-foreground">引言 - 问题提出</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-accent-success/10 rounded-lg border border-accent-success/20">
+                    <div className="w-3 h-3 bg-accent-success rounded-full"></div>
+                    <span className="text-foreground">分论点1 - AI技术应用</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-accent-warning/10 rounded-lg border border-accent-warning/20">
+                    <div className="w-3 h-3 bg-accent-warning rounded-full"></div>
+                    <span className="text-foreground">分论点2 - 影响分析（过渡薄弱）</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-accent-success/10 rounded-lg border border-accent-success/20">
+                    <div className="w-3 h-3 bg-accent-success rounded-full"></div>
+                    <span className="text-foreground">结论 - 总结展望</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Language & Style Analysis */}
+          <div className="bg-card rounded-xl p-8 shadow-medium border border-border-subtle">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="font-heading text-xl font-semibold text-foreground flex items-center gap-3">
+                <PenTool className="text-primary" size={24} />
+                语言与风格分析
+              </h3>
+              <div className="text-2xl font-bold text-accent-info">78/100</div>
+            </div>
+            
+            <div className="space-y-6">
+              <div>
+                <h4 className="font-semibold text-foreground mb-3">AI评语</h4>
+                <p className="text-foreground leading-relaxed">
+                  词汇运用恰当，句式具有一定变化。文章语态以主动语态为主，表达较为直接清晰。
+                  存在少量词汇重复使用的情况，建议增加同义词替换以提升表达的丰富性和学术水准。
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <WordCloud words={wordCloudData} />
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold text-foreground mb-3">词汇优化建议</h4>
+                  <div className="space-y-3">
+                    <div className="p-3 bg-muted rounded-lg">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-accent-warning font-medium">好的 (使用9次)</span>
+                        <span className="text-xs text-muted-foreground">高频弱效词</span>
+                      </div>
+                      <div className="text-sm text-foreground">
+                        建议替换: <span className="text-accent-success font-medium">优秀的、卓越的、显著的</span>
+                      </div>
+                    </div>
+                    <div className="p-3 bg-muted rounded-lg">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-accent-warning font-medium">很多 (使用7次)</span>
+                        <span className="text-xs text-muted-foreground">高频弱效词</span>
+                      </div>
+                      <div className="text-sm text-foreground">
+                        建议替换: <span className="text-accent-success font-medium">大量的、众多的、丰富的</span>
+                      </div>
+                    </div>
+                    <div className="p-3 bg-muted rounded-lg">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-accent-warning font-medium">重要 (使用6次)</span>
+                        <span className="text-xs text-muted-foreground">高频弱效词</span>
+                      </div>
+                      <div className="text-sm text-foreground">
+                        建议替换: <span className="text-accent-success font-medium">关键的、核心的、至关重要的</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Grammar & Format Check */}
         <section className="bg-card rounded-xl p-8 shadow-medium border border-border-subtle">
-          <h2 className="font-heading text-2xl font-semibold text-foreground mb-6 flex items-center gap-3">
-            <Award className="text-primary" size={24} />
-            语法与格式检查
-          </h2>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="font-heading text-2xl font-semibold text-foreground flex items-center gap-3">
+              <Award className="text-primary" size={24} />
+              语法与格式检查
+            </h2>
+            <div className="text-2xl font-bold text-accent-info">68/100</div>
+          </div>
           
-          <div className="grid md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-accent-success/10 rounded-lg p-4 border border-accent-success/20">
-              <div className="text-2xl font-bold text-accent-success">2</div>
+          <div className="grid md:grid-cols-4 gap-4 mb-8">
+            <div className="bg-accent-warning/10 rounded-lg p-4 border border-accent-warning/20">
+              <div className="text-2xl font-bold text-accent-warning">5</div>
               <div className="text-sm text-muted-foreground">语法错误</div>
             </div>
             <div className="bg-accent-info/10 rounded-lg p-4 border border-accent-info/20">
-              <div className="text-2xl font-bold text-accent-info">1</div>
+              <div className="text-2xl font-bold text-accent-info">3</div>
               <div className="text-sm text-muted-foreground">拼写错误</div>
             </div>
             <div className="bg-accent-warning/10 rounded-lg p-4 border border-accent-warning/20">
-              <div className="text-2xl font-bold text-accent-warning">3</div>
+              <div className="text-2xl font-bold text-accent-warning">7</div>
               <div className="text-sm text-muted-foreground">标点误用</div>
             </div>
             <div className="bg-primary/10 rounded-lg p-4 border border-primary/20">
-              <div className="text-2xl font-bold text-primary">1</div>
+              <div className="text-2xl font-bold text-primary">2</div>
               <div className="text-sm text-muted-foreground">格式问题</div>
             </div>
           </div>
 
-          <div className="space-y-4">
-            <div className="bg-muted-dark rounded-lg p-4">
-              <h4 className="font-semibold text-foreground mb-2">语法修正建议</h4>
-              <div className="space-y-2">
-                <div>
-                  <div className="text-sm text-muted-foreground mb-1">原文：</div>
-                  <div className="text-foreground bg-card p-2 rounded border-l-4 border-accent-warning">
-                    "这些技术的发展对学生学习方式产生了深远的影响。"
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-heading text-lg font-semibold text-foreground mb-4">详细问题分析</h3>
+              
+              {/* Grammar Errors */}
+              <div className="mb-6">
+                <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                  <div className="w-3 h-3 bg-accent-warning rounded-full"></div>
+                  语法错误 (5处)
+                </h4>
+                <div className="space-y-4">
+                  <div className="bg-muted rounded-lg p-4">
+                    <div className="text-sm text-muted-foreground mb-2">第2段，第3句：</div>
+                    <div className="bg-accent-warning/10 p-3 rounded border-l-4 border-accent-warning mb-2">
+                      <span className="text-foreground">"这些技术的发展对学生学习方式产生了深远的影响。"</span>
+                    </div>
+                    <div className="bg-accent-success/10 p-3 rounded border-l-4 border-accent-success">
+                      <span className="text-foreground">"这些技术的发展对学生的学习方式产生了深远的影响。"</span>
+                    </div>
+                    <div className="text-sm text-muted-foreground mt-2">建议：在"学生"和"学习方式"之间添加助词"的"</div>
                   </div>
-                  <div className="text-sm text-muted-foreground mb-1 mt-2">建议：</div>
-                  <div className="text-foreground bg-card p-2 rounded border-l-4 border-accent-success">
-                    "这些技术的发展对学生的学习方式产生了深远的影响。"
+                  
+                  <div className="bg-muted rounded-lg p-4">
+                    <div className="text-sm text-muted-foreground mb-2">第4段，第1句：</div>
+                    <div className="bg-accent-warning/10 p-3 rounded border-l-4 border-accent-warning mb-2">
+                      <span className="text-foreground">"人工智能可以根据每个学生不同能力和学习进度..."</span>
+                    </div>
+                    <div className="bg-accent-success/10 p-3 rounded border-l-4 border-accent-success">
+                      <span className="text-foreground">"人工智能可以根据每个学生的不同能力和学习进度..."</span>
+                    </div>
+                    <div className="text-sm text-muted-foreground mt-2">建议：在"学生"后添加助词"的"</div>
+                  </div>
+                  
+                  <div className="bg-muted rounded-lg p-4">
+                    <div className="text-sm text-muted-foreground mb-2">第6段，第2句：</div>
+                    <div className="bg-accent-warning/10 p-3 rounded border-l-4 border-accent-warning mb-2">
+                      <span className="text-foreground">"传统教学方法已经不能完全满足现代学生需求。"</span>
+                    </div>
+                    <div className="bg-accent-success/10 p-3 rounded border-l-4 border-accent-success">
+                      <span className="text-foreground">"传统的教学方法已经不能完全满足现代学生的需求。"</span>
+                    </div>
+                    <div className="text-sm text-muted-foreground mt-2">建议：添加助词"的"增强语法准确性</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Punctuation Issues */}
+              <div className="mb-6">
+                <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                  <div className="w-3 h-3 bg-accent-warning rounded-full"></div>
+                  标点误用 (7处)
+                </h4>
+                <div className="space-y-3">
+                  <div className="bg-muted rounded-lg p-4">
+                    <div className="text-sm text-muted-foreground mb-2">问题：句号位置错误</div>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <div className="text-xs text-muted-foreground mb-1">错误:</div>
+                        <div className="bg-accent-warning/10 p-2 rounded text-sm">"...具有重要意义"。(引号外)</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-muted-foreground mb-1">正确:</div>
+                        <div className="bg-accent-success/10 p-2 rounded text-sm">"...具有重要意义。"(引号内)</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-muted rounded-lg p-4">
+                    <div className="text-sm text-muted-foreground mb-2">问题：逗号滥用</div>
+                    <div className="text-sm text-foreground">共发现4处不必要的逗号使用，建议简化句式结构</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Spelling Errors */}
+              <div className="mb-6">
+                <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                  <div className="w-3 h-3 bg-accent-info rounded-full"></div>
+                  拼写错误 (3处)
+                </h4>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <div className="bg-muted rounded-lg p-3">
+                    <div className="text-xs text-muted-foreground mb-1">错误:</div>
+                    <div className="text-accent-warning font-medium">人工智慧</div>
+                    <div className="text-xs text-muted-foreground mt-1">正确:</div>
+                    <div className="text-accent-success font-medium">人工智能</div>
+                  </div>
+                  <div className="bg-muted rounded-lg p-3">
+                    <div className="text-xs text-muted-foreground mb-1">错误:</div>
+                    <div className="text-accent-warning font-medium">学习效果</div>
+                    <div className="text-xs text-muted-foreground mt-1">正确:</div>
+                    <div className="text-accent-success font-medium">学习效果</div>
+                  </div>
+                  <div className="bg-muted rounded-lg p-3">
+                    <div className="text-xs text-muted-foreground mb-1">错误:</div>
+                    <div className="text-accent-warning font-medium">技朮</div>
+                    <div className="text-xs text-muted-foreground mt-1">正确:</div>
+                    <div className="text-accent-success font-medium">技术</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Format Issues */}
+              <div>
+                <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                  <div className="w-3 h-3 bg-primary rounded-full"></div>
+                  格式问题 (2处)
+                </h4>
+                <div className="space-y-3">
+                  <div className="bg-muted rounded-lg p-4">
+                    <div className="text-sm text-muted-foreground mb-2">问题：参考文献格式不统一</div>
+                    <div className="text-sm text-foreground">建议统一采用APA格式，确保作者、年份、标题格式一致</div>
+                  </div>
+                  <div className="bg-muted rounded-lg p-4">
+                    <div className="text-sm text-muted-foreground mb-2">问题：段落缩进不统一</div>
+                    <div className="text-sm text-foreground">部分段落首行缩进为2字符，部分为4字符，建议统一为2字符</div>
                   </div>
                 </div>
               </div>
