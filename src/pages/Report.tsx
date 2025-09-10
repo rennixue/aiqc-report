@@ -41,22 +41,14 @@ const Report = () => {
       {/* Header */}
       <header className="bg-card border-b border-border-subtle shadow-soft">
         <div className="max-w-6xl mx-auto px-6 py-8">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="font-heading text-3xl font-bold text-foreground mb-2">
-                《人工智能在现代教育中的应用与影响》- 智能分析报告
-              </h1>
-              <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                <span>生成日期：2024年01月15日</span>
-                <span>报告ID：RP-20240115-78432</span>
-                <span>学生：张同学</span>
-              </div>
-            </div>
-            <div className="text-right">
-              <div className="bg-gradient-primary text-primary-foreground px-4 py-2 rounded-lg shadow-primary">
-                <div className="font-heading text-2xl font-bold">{overallScore}/100</div>
-                <div className="text-xs opacity-90">综合评分</div>
-              </div>
+          <div>
+            <h1 className="font-sans text-3xl font-bold text-foreground mb-2">
+              《人工智能在现代教育中的应用与影响》- 智能分析报告
+            </h1>
+            <div className="flex items-center gap-6 text-sm text-muted-foreground font-sans">
+              <span>生成日期：2024年01月15日</span>
+              <span>报告ID：RP-20240115-78432</span>
+              <span>昵称：张同学</span>
             </div>
           </div>
         </div>
@@ -64,70 +56,101 @@ const Report = () => {
 
       <main className="max-w-6xl mx-auto px-6 py-8 space-y-8">
         {/* Executive Summary */}
-        <section className="bg-card rounded-xl p-8 shadow-medium border border-border-subtle">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h2 className="font-heading text-2xl font-semibold text-foreground mb-6 flex items-center gap-3">
-                <Target className="text-primary" size={24} />
-                综合评估概况
-              </h2>
-              
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-card-subtle rounded-lg p-4 border border-border-subtle">
-                  <div className="text-2xl font-bold text-foreground">{wordCount}</div>
-                  <div className="text-sm text-muted-foreground">总词数</div>
+        <section className="bg-card rounded-xl p-8 shadow-soft border border-border-subtle">
+          <h2 className="font-sans text-2xl font-semibold text-foreground mb-8 flex items-center gap-3">
+            <Target className="text-primary" size={24} />
+            综合评估概况
+          </h2>
+          
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Left: Overall Score */}
+            <div className="lg:col-span-1">
+              <div className="text-center mb-6">
+                <div className="bg-gradient-primary text-primary-foreground w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4 shadow-primary">
+                  <div className="font-sans text-2xl font-bold">{overallScore}/100</div>
                 </div>
-                <div className="bg-card-subtle rounded-lg p-4 border border-border-subtle">
-                  <div className="text-2xl font-bold text-foreground">{readingTime}分钟</div>
-                  <div className="text-sm text-muted-foreground">预估阅读时间</div>
-                </div>
-                <div className="bg-card-subtle rounded-lg p-4 border border-border-subtle">
-                  <div className="text-2xl font-bold text-foreground">{avgSentenceLength}</div>
-                  <div className="text-sm text-muted-foreground">平均句长</div>
-                </div>
-                <div className="bg-card-subtle rounded-lg p-4 border border-border-subtle">
-                  <div className="text-2xl font-bold text-foreground">{readabilityLevel}</div>
-                  <div className="text-sm text-muted-foreground">阅读难度等级</div>
+                <div className="font-sans text-lg font-semibold text-foreground">综合评分</div>
+                <div className="mt-3 space-y-2">
+                  <div className="flex items-center justify-between font-sans text-sm">
+                    <span className="text-muted-foreground">潜在最高分</span>
+                    <span className="text-primary font-bold">{potentialScore}/100</span>
+                  </div>
+                  <div className="flex items-center justify-between font-sans text-sm">
+                    <span className="text-muted-foreground">可提升分数</span>
+                    <span className="text-accent-success font-bold">+{potentialScore - overallScore}</span>
+                  </div>
                 </div>
               </div>
-
-              <div className="bg-muted rounded-lg p-6">
-                <h3 className="font-heading font-semibold text-lg mb-3 text-foreground">AI评语摘要</h3>
-                <p className="text-foreground leading-relaxed">
+            </div>
+            
+            {/* Middle: Text Metrics */}
+            <div className="lg:col-span-1">
+              <h3 className="font-sans font-semibold text-lg mb-4 text-foreground">文本基础指标</h3>
+              <div className="space-y-4">
+                <div className="bg-card-subtle rounded-lg p-4 border border-border-subtle">
+                  <div className="font-sans text-2xl font-bold text-foreground">{wordCount}</div>
+                  <div className="font-sans text-sm text-muted-foreground">总词数</div>
+                </div>
+                <div className="bg-card-subtle rounded-lg p-4 border border-border-subtle">
+                  <div className="font-sans text-2xl font-bold text-foreground">{readingTime}分钟</div>
+                  <div className="font-sans text-sm text-muted-foreground">预估阅读时间</div>
+                </div>
+                <div className="bg-card-subtle rounded-lg p-4 border border-border-subtle">
+                  <div className="font-sans text-2xl font-bold text-foreground">{avgSentenceLength}</div>
+                  <div className="font-sans text-sm text-muted-foreground">平均句长</div>
+                </div>
+                <div className="bg-card-subtle rounded-lg p-4 border border-border-subtle">
+                  <div className="font-sans text-2xl font-bold text-foreground">{readabilityLevel}</div>
+                  <div className="font-sans text-sm text-muted-foreground">阅读难度等级</div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Right: AI Summary */}
+            <div className="lg:col-span-1">
+              <h3 className="font-sans font-semibold text-lg mb-4 text-foreground">AI评语摘要</h3>
+              <div className="bg-muted rounded-lg p-6 h-full">
+                <p className="font-sans text-foreground leading-relaxed">
                   本文论点明确，选题具有现实意义。论证过程中使用了丰富的数据作为支撑，展现了良好的研究能力。
                   主要提升空间在于文章的逻辑结构可以进一步优化，部分段落间的衔接不够流畅，
                   此外语言的可读性也有待加强。
                 </p>
-                <div className="mt-4 flex items-center gap-2">
-                  <Badge variant="secondary">潜在最高分：{potentialScore}/100</Badge>
-                  <Badge variant="outline">可提升 {potentialScore - overallScore} 分</Badge>
-                </div>
               </div>
             </div>
-
           </div>
         </section>
 
         {/* Multi-Dimensional Assessment */}
-        <section className="bg-card rounded-xl p-8 shadow-medium border border-border-subtle">
-          <h2 className="font-heading text-2xl font-semibold text-foreground mb-6 flex items-center gap-3">
+        <section className="bg-card rounded-xl p-8 shadow-soft border border-border-subtle">
+          <h2 className="font-sans text-2xl font-semibold text-foreground mb-8 flex items-center gap-3">
             <Target className="text-primary" size={24} />
             多维能力评估
           </h2>
           
-          <div className="grid lg:grid-cols-2 gap-8">
-            <div>
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
+            <div className="bg-card-subtle rounded-lg p-6 border border-border-subtle">
+              <h3 className="font-sans text-lg font-semibold text-foreground mb-4 text-center">能力雷达图</h3>
               <CompetencyRadarChart data={radarData} />
             </div>
             
-            <div className="space-y-4">
-              <h3 className="font-heading text-lg font-semibold text-foreground mb-4">详细评分</h3>
-              {radarData.map((item, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-muted rounded-lg">
-                  <span className="text-foreground font-medium">{item.dimension}</span>
-                  <span className="text-primary font-bold text-lg">{item.score}/100</span>
-                </div>
-              ))}
+            <div className="bg-card-subtle rounded-lg p-6 border border-border-subtle">
+              <h3 className="font-sans text-lg font-semibold text-foreground mb-6">各维度评分详情</h3>
+              <div className="space-y-5">
+                {radarData.map((item, index) => (
+                  <div key={index} className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="font-sans text-foreground font-medium">{item.dimension}</span>
+                      <span className="font-sans text-primary font-bold text-lg">{item.score}/100</span>
+                    </div>
+                    <div className="w-full bg-muted rounded-full h-2">
+                      <div 
+                        className="bg-gradient-to-r from-primary to-primary-glow h-2 rounded-full transition-all duration-300" 
+                        style={{ width: `${item.score}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -137,36 +160,36 @@ const Report = () => {
           <h2 className="font-heading text-2xl font-semibold text-foreground">深度分析板块</h2>
           
           {/* Content & Thesis Analysis */}
-          <div className="bg-card rounded-xl p-8 shadow-medium border border-border-subtle">
+          <div className="bg-card rounded-xl p-8 shadow-soft border border-border-subtle">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="font-heading text-xl font-semibold text-foreground flex items-center gap-3">
+              <h3 className="font-sans text-xl font-semibold text-foreground flex items-center gap-3">
                 <BookOpen className="text-primary" size={24} />
                 内容与论点分析
               </h3>
-              <div className="text-2xl font-bold text-accent-success">85/100</div>
+              <div className="font-sans text-2xl font-bold text-accent-success">85/100</div>
             </div>
             
             <div className="space-y-6">
               <div>
-                <h4 className="font-semibold text-foreground mb-3">AI评语</h4>
-                <p className="text-foreground leading-relaxed">
+                <h4 className="font-sans font-semibold text-foreground mb-3">AI评语</h4>
+                <p className="font-sans text-foreground leading-relaxed">
                   文章立场清晰，论点具有现实意义和学术价值。作者展现了良好的批判性思维，能够从多角度分析人工智能在教育领域的影响。
                   主题展开充分，对于AI技术的教育应用场景描述详细且具体。
                 </p>
               </div>
               
               <div>
-                <h4 className="font-semibold text-foreground mb-3">原文证据</h4>
+                <h4 className="font-sans font-semibold text-foreground mb-3">原文证据</h4>
                 <div className="space-y-4">
                   <div className="bg-accent-success/10 p-4 rounded-lg border-l-4 border-accent-success">
-                    <div className="text-sm text-muted-foreground mb-2">优秀示例：</div>
-                    <p className="text-foreground italic">"人工智能技术正在以前所未有的速度改变着教育的基本形态，从个性化学习推荐到智能评估系统..."</p>
-                    <div className="text-sm text-accent-success mt-2">✓ 开篇引入恰当，立意清晰</div>
+                    <div className="font-sans text-sm text-muted-foreground mb-2">优秀示例：</div>
+                    <p className="font-sans text-foreground italic">"人工智能技术正在以前所未有的速度改变着教育的基本形态，从个性化学习推荐到智能评估系统..."</p>
+                    <div className="font-sans text-sm text-accent-success mt-2">✓ 开篇引入恰当，立意清晰</div>
                   </div>
                   <div className="bg-accent-warning/10 p-4 rounded-lg border-l-4 border-accent-warning">
-                    <div className="text-sm text-muted-foreground mb-2">待改进示例：</div>
-                    <p className="text-foreground italic">"这些技术很好，对学生有帮助。"</p>
-                    <div className="text-sm text-accent-warning mt-2">⚠ 论述过于简单，缺乏深度分析</div>
+                    <div className="font-sans text-sm text-muted-foreground mb-2">待改进示例：</div>
+                    <p className="font-sans text-foreground italic">"这些技术很好，对学生有帮助。"</p>
+                    <div className="font-sans text-sm text-accent-warning mt-2">⚠ 论述过于简单，缺乏深度分析</div>
                   </div>
                 </div>
               </div>
