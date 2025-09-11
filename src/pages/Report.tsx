@@ -153,11 +153,14 @@ const Report = () => {
                   </div>
                 </div>
                 <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/10 rounded-lg p-4">
-                  <div>
-                    <div className="font-sans text-lg font-bold text-foreground mb-2">段落分析</div>
-                    <div className="font-sans text-sm text-foreground">
-                      共5段，最长段落(第3段)含156词，最短段落(结论段)含78词，长度分布较为合理。
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-sans text-lg font-bold text-foreground">5段，平均117词/段</div>
+                      <div className="font-sans text-sm text-muted-foreground">段落分布</div>
                     </div>
+                    <Badge variant="secondary" className="bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">
+                      分布合理
+                    </Badge>
                   </div>
                 </div>
                 <div className="bg-gradient-to-br from-orange-500/10 to-orange-600/10 rounded-lg p-4">
