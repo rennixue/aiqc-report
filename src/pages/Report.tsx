@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 const radarData = [
   { dimension: '内容与论点', score: 85, fullMark: 100 },
   { dimension: '结构与逻辑', score: 72, fullMark: 100 },
-  { dimension: '语言与风格', score: 78, fullMark: 100 },
   { dimension: '证据与支撑', score: 80, fullMark: 100 },
   { dimension: '格式与规范', score: 68, fullMark: 100 },
   { dimension: '原创性与价值', score: 92, fullMark: 100 },
@@ -130,26 +129,47 @@ const Report = () => {
                 <FileText className="text-primary" size={20} />
                 文本基础指标
               </h3>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-lg p-3">
-                  <FileText className="text-blue-600 mb-1" size={16} />
-                  <div className="font-sans text-xl font-bold text-foreground">{wordCount}</div>
-                  <div className="font-sans text-xs text-muted-foreground">总词数</div>
+              <div className="space-y-4">
+                <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-lg p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-sans text-lg font-bold text-foreground">21.5 词/句</div>
+                      <div className="font-sans text-sm text-muted-foreground">平均句长</div>
+                    </div>
+                    <Badge variant="secondary" className="bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">
+                      处于良好区间
+                    </Badge>
+                  </div>
                 </div>
-                <div className="bg-gradient-to-br from-green-500/10 to-green-600/10 rounded-lg p-3">
-                  <BookOpen className="text-green-600 mb-1" size={16} />
-                  <div className="font-sans text-xl font-bold text-foreground">{readingTime}分钟</div>
-                  <div className="font-sans text-xs text-muted-foreground">预估阅读时间</div>
+                <div className="bg-gradient-to-br from-green-500/10 to-green-600/10 rounded-lg p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-sans text-lg font-bold text-foreground">45%</div>
+                      <div className="font-sans text-sm text-muted-foreground">长难句占比</div>
+                    </div>
+                    <Badge variant="secondary" className="bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">
+                      学术写作的优秀水平
+                    </Badge>
+                  </div>
                 </div>
-                <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/10 rounded-lg p-3">
-                  <PenTool className="text-purple-600 mb-1" size={16} />
-                  <div className="font-sans text-xl font-bold text-foreground">{avgSentenceLength}</div>
-                  <div className="font-sans text-xs text-muted-foreground">平均句长</div>
+                <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/10 rounded-lg p-4">
+                  <div>
+                    <div className="font-sans text-lg font-bold text-foreground mb-2">段落分析</div>
+                    <div className="font-sans text-sm text-foreground">
+                      共5段，最长段落(第3段)含156词，最短段落(结论段)含78词，长度分布较为合理。
+                    </div>
+                  </div>
                 </div>
-                <div className="bg-gradient-to-br from-orange-500/10 to-orange-600/10 rounded-lg p-3">
-                  <Target className="text-orange-600 mb-1" size={16} />
-                  <div className="font-sans text-xl font-bold text-foreground">{readabilityLevel}</div>
-                  <div className="font-sans text-xs text-muted-foreground">阅读难度等级</div>
+                <div className="bg-gradient-to-br from-orange-500/10 to-orange-600/10 rounded-lg p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-sans text-lg font-bold text-foreground">11.2%</div>
+                      <div className="font-sans text-sm text-muted-foreground">高级词汇占比</div>
+                    </div>
+                    <Badge variant="secondary" className="bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">
+                      高于10%的基准线，用词出色
+                    </Badge>
+                  </div>
                 </div>
               </div>
             </Card>
@@ -300,78 +320,14 @@ const Report = () => {
             </div>
           </div>
 
-          {/* Language & Style Analysis */}
-          <div className="bg-card rounded-xl p-8 shadow-medium">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="font-sans text-xl font-semibold text-foreground flex items-center gap-3">
-                <PenTool className="text-primary" size={24} />
-                语言与风格分析
-              </h3>
-              <div className="flex items-center gap-4">
-                <Badge variant="secondary" className="font-sans text-sm bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">
-                  预估提分: +2
-                </Badge>
-                <div className="font-sans text-2xl font-bold text-accent-info">78/100</div>
-              </div>
-            </div>
-            
-            <div className="space-y-6">
-              <div>
-                <h4 className="font-semibold text-foreground mb-3">AI评语</h4>
-                <p className="text-foreground leading-relaxed">
-                  词汇运用恰当，句式具有一定变化。文章语态以主动语态为主，表达较为直接清晰。
-                  存在少量词汇重复使用的情况，建议增加同义词替换以提升表达的丰富性和学术水准。
-                </p>
-              </div>
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <WordCloud words={wordCloudData} />
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-foreground mb-3">词汇优化建议</h4>
-                  <div className="space-y-3">
-                    <div className="p-3 bg-muted rounded-lg">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-accent-warning font-medium">好的 (使用9次)</span>
-                        <span className="text-xs text-muted-foreground">高频弱效词</span>
-                      </div>
-                      <div className="text-sm text-foreground">
-                        建议替换: <span className="text-accent-success font-medium">优秀的、卓越的、显著的</span>
-                      </div>
-                    </div>
-                    <div className="p-3 bg-muted rounded-lg">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-accent-warning font-medium">很多 (使用7次)</span>
-                        <span className="text-xs text-muted-foreground">高频弱效词</span>
-                      </div>
-                      <div className="text-sm text-foreground">
-                        建议替换: <span className="text-accent-success font-medium">大量的、众多的、丰富的</span>
-                      </div>
-                    </div>
-                    <div className="p-3 bg-muted rounded-lg">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-accent-warning font-medium">重要 (使用6次)</span>
-                        <span className="text-xs text-muted-foreground">高频弱效词</span>
-                      </div>
-                      <div className="text-sm text-foreground">
-                        建议替换: <span className="text-accent-success font-medium">关键的、核心的、至关重要的</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </section>
 
-        {/* Grammar & Format Check */}
+        {/* Grammar Check */}
         <section className="bg-card rounded-xl p-8 shadow-medium">
           <div className="flex items-center justify-between mb-6">
             <h2 className="font-sans text-xl font-semibold text-foreground flex items-center gap-3">
               <Award className="text-primary" size={24} />
-              语法与格式检查
+              语法检查
             </h2>
             <div className="flex items-center gap-4">
               <Badge variant="secondary" className="font-sans text-sm bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">
@@ -381,7 +337,7 @@ const Report = () => {
             </div>
           </div>
           
-          <div className="grid md:grid-cols-4 gap-4 mb-8">
+          <div className="grid md:grid-cols-3 gap-4 mb-8">
             <div className="bg-accent-warning/10 rounded-lg p-4 shadow-soft">
               <div className="text-2xl font-bold text-accent-warning">5</div>
               <div className="text-sm text-muted-foreground">语法错误</div>
@@ -393,10 +349,6 @@ const Report = () => {
             <div className="bg-accent-warning/10 rounded-lg p-4 shadow-soft">
               <div className="text-2xl font-bold text-accent-warning">7</div>
               <div className="text-sm text-muted-foreground">标点误用</div>
-            </div>
-            <div className="bg-primary/10 rounded-lg p-4 shadow-soft">
-              <div className="text-2xl font-bold text-primary">2</div>
-              <div className="text-sm text-muted-foreground">格式问题</div>
             </div>
           </div>
 
@@ -502,23 +454,6 @@ const Report = () => {
                 </div>
               </div>
 
-              {/* Format Issues */}
-              <div>
-                <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <div className="w-3 h-3 bg-primary rounded-full"></div>
-                  格式问题 (2处)
-                </h4>
-                <div className="space-y-3">
-                  <div className="bg-muted rounded-lg p-4">
-                    <div className="text-sm text-muted-foreground mb-2">问题：参考文献格式不统一</div>
-                    <div className="text-sm text-foreground">建议统一采用APA格式，确保作者、年份、标题格式一致</div>
-                  </div>
-                  <div className="bg-muted rounded-lg p-4">
-                    <div className="text-sm text-muted-foreground mb-2">问题：段落缩进不统一</div>
-                    <div className="text-sm text-foreground">部分段落首行缩进为2字符，部分为4字符，建议统一为2字符</div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -581,34 +516,6 @@ const Report = () => {
           </Card>
         </section>
 
-        {/* Academic Integrity */}
-        <section className="bg-card rounded-xl p-8 shadow-medium">
-          <h2 className="font-sans text-2xl font-semibold text-foreground mb-6 flex items-center gap-3">
-            <Shield className="text-accent-success" size={24} />
-            学术诚信检测
-          </h2>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-accent-success mb-2">98%</div>
-              <div className="text-sm text-muted-foreground">原创度指数</div>
-            </div>
-            <div className="text-center">
-              <div className="text-lg font-semibold text-accent-success mb-2">通过</div>
-              <div className="text-sm text-muted-foreground">检测结果</div>
-            </div>
-            <div className="text-center">
-              <div className="text-lg font-semibold text-foreground mb-2">无</div>
-              <div className="text-sm text-muted-foreground">潜在问题</div>
-            </div>
-          </div>
-          
-          <div className="mt-6 p-4 bg-accent-success/10 rounded-lg shadow-soft">
-            <p className="text-sm text-foreground">
-              ✅ 未发现潜在的抄袭内容。文章整体展现了良好的学术诚信水准。
-            </p>
-          </div>
-        </section>
       </main>
 
       {/* Footer */}
